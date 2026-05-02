@@ -18,20 +18,16 @@
     --brie: #B07D4A;
     --brie-light: #D4A87A;
     --brie-bg: #F5EBE0;
-    --both: #8AAF72;
     --gold: #C9A84C;
     --gold-bg: #F5EDD6;
     --month-header: #3A2E1E;
-    --week-divider: #C4A882;
     --border: #DDD5C4;
     --shadow: rgba(60,40,10,0.08);
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     background: var(--bg);
-    background-image: 
+    background-image:
       radial-gradient(ellipse at 20% 0%, rgba(139,115,85,0.08) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 100%, rgba(107,143,94,0.06) 0%, transparent 60%);
     font-family: 'DM Sans', sans-serif;
@@ -39,8 +35,67 @@
     min-height: 100vh;
   }
 
+  /* ── PASSWORD GATE ── */
+  #gate {
+    position: fixed; inset: 0;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  #gate h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--month-header);
+  }
+  #gate p { font-size: 0.85rem; color: var(--ink-light); }
+  .gate-box {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 8px 32px var(--shadow);
+  }
+  .gate-input {
+    padding: 0.7rem 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    background: var(--bg);
+    color: var(--ink);
+    outline: none;
+    letter-spacing: 0.15em;
+  }
+  .gate-input:focus { border-color: var(--chad); }
+  .gate-btn {
+    padding: 0.7rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--month-header);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .gate-btn:hover { background: var(--chad); }
+  .gate-error {
+    font-size: 0.78rem;
+    color: #c0392b;
+    text-align: center;
+    min-height: 1rem;
+  }
+
+  /* ── HEADER ── */
   header {
-    padding: 2.5rem 3rem 1.5rem;
+    padding: 2rem 3rem 1.2rem;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: flex-end;
@@ -53,7 +108,6 @@
     z-index: 100;
     box-shadow: 0 2px 12px var(--shadow);
   }
-
   .title-block h1 {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
@@ -62,71 +116,39 @@
     letter-spacing: -0.02em;
     line-height: 1;
   }
-
-  .title-block p {
-    font-size: 0.8rem;
-    color: var(--ink-light);
-    font-weight: 300;
-    margin-top: 0.3rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .legend {
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--ink-light);
-  }
-
-  .legend-dot {
-    width: 12px; height: 12px;
-    border-radius: 3px;
-  }
-
+  .title-block p { font-size: 0.78rem; color: var(--ink-light); font-weight: 300; margin-top: 0.3rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .legend { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 500; color: var(--ink-light); }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
   .dot-chad { background: var(--chad); }
   .dot-brie { background: var(--brie); }
-  .dot-both { background: var(--both); }
-
-  .nav {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
+  .dot-both { background: var(--gold); }
+  .nav { display: flex; align-items: center; gap: 1rem; }
   .nav-btn {
-    background: none;
-    border: 1.5px solid var(--border);
-    width: 34px; height: 34px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    color: var(--ink-light);
+    background: none; border: 1.5px solid var(--border);
+    width: 34px; height: 34px; border-radius: 8px;
+    cursor: pointer; font-size: 1rem; color: var(--ink-light);
     display: flex; align-items: center; justify-content: center;
     transition: all 0.15s;
   }
   .nav-btn:hover { border-color: var(--chad); color: var(--chad); background: var(--chad-bg); }
+  .month-label { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; color: var(--ink); min-width: 140px; text-align: center; }
 
-  .month-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--ink);
-    min-width: 140px;
-    text-align: center;
+  /* sync indicator */
+  .sync-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--ink-faint);
+    display: inline-block;
+    transition: background 0.3s;
   }
+  .sync-dot.syncing { background: var(--gold); animation: pulse 1s infinite; }
+  .sync-dot.synced { background: var(--chad); }
+  .sync-dot.error { background: #c0392b; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .sync-label { font-size: 0.7rem; color: var(--ink-light); display: flex; align-items: center; gap: 0.4rem; }
 
+  /* ── MAIN ── */
   main { padding: 2rem 3rem 4rem; max-width: 1400px; margin: 0 auto; }
-
   .calendar-grid {
     background: var(--paper);
     border-radius: 16px;
@@ -134,280 +156,99 @@
     overflow: hidden;
     box-shadow: 0 4px 24px var(--shadow);
   }
-
-  /* Day-of-week header */
-  .dow-row {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    background: var(--month-header);
-  }
-  .dow-cell {
-    padding: 0.6rem 0;
-    text-align: center;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.7);
-  }
+  .dow-row { display: grid; grid-template-columns: repeat(7,1fr); background: var(--month-header); }
+  .dow-cell { padding: 0.6rem 0; text-align: center; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
   .dow-cell.weekend { color: rgba(255,255,255,0.4); }
-
-  /* Calendar weeks */
-  .week-row {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    border-bottom: 1px solid var(--border);
-  }
+  .week-row { display: grid; grid-template-columns: repeat(7,1fr); border-bottom: 1px solid var(--border); }
   .week-row:last-child { border-bottom: none; }
-
   .day-cell {
-    min-height: 110px;
-    padding: 0.5rem;
+    min-height: 110px; padding: 0.5rem;
     border-right: 1px solid var(--border);
-    position: relative;
-    transition: background 0.15s;
+    position: relative; transition: background 0.15s, filter 0.15s;
   }
   .day-cell:last-child { border-right: none; }
   .day-cell.empty { background: rgba(0,0,0,0.015); }
   .day-cell.other-month { opacity: 0.35; }
   .day-cell.today .day-num {
-    background: var(--month-header);
-    color: white;
-    border-radius: 50%;
-    width: 24px; height: 24px;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 600;
+    background: var(--month-header); color: white;
+    border-radius: 50%; width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center; font-weight: 600;
   }
   .day-cell.weekend { background: rgba(0,0,0,0.012); }
-  .day-cell:hover:not(.empty) { cursor: pointer; filter: brightness(0.96); }
+  .day-cell:hover:not(.empty):not(.other-month) { cursor: pointer; filter: brightness(0.96); }
   .day-cell.shade-chad { background: var(--chad-bg); }
   .day-cell.shade-brie { background: var(--brie-bg); }
   .day-cell.shade-both { background: var(--gold-bg); }
-
-  .day-num {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--ink-light);
-    margin-bottom: 0.4rem;
-    width: 24px; height: 24px;
-    display: flex; align-items: center; justify-content: center;
-  }
-
-  .workouts-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .workout-row {
-    display: flex;
-    gap: 2px;
-    align-items: center;
-  }
-
-  .workout-label {
-    font-size: 0.52rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: var(--ink-faint);
-    text-transform: uppercase;
-    width: 28px;
-    flex-shrink: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
+  .day-num { font-size: 0.75rem; font-weight: 600; color: var(--ink-light); margin-bottom: 0.4rem; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+  .workouts-grid { display: flex; flex-direction: column; gap: 2px; }
+  .workout-row { display: flex; gap: 2px; align-items: center; }
+  .workout-label { font-size: 0.52rem; font-weight: 600; letter-spacing: 0.04em; color: var(--ink-faint); text-transform: uppercase; width: 28px; flex-shrink: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
   .workout-pip {
-    width: 14px; height: 14px;
-    border-radius: 3px;
-    border: 1.5px solid var(--border);
-    cursor: pointer;
-    transition: all 0.12s;
-    flex-shrink: 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.52rem;
-    font-weight: 700;
-    color: var(--ink-faint);
-    letter-spacing: 0;
+    width: 14px; height: 14px; border-radius: 3px;
+    border: 1.5px solid var(--border); cursor: pointer;
+    transition: all 0.12s; flex-shrink: 0; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.52rem; font-weight: 700; color: var(--ink-faint);
     font-family: 'DM Sans', sans-serif;
   }
   .workout-pip:hover { border-color: var(--ink-faint); transform: scale(1.1); }
   .workout-pip.chad-done { background: var(--chad); border-color: var(--chad); color: white; }
   .workout-pip.brie-done { background: var(--brie); border-color: var(--brie); color: white; }
-
-  .workout-pip::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 2px;
-    opacity: 0;
-    transition: opacity 0.1s;
-  }
-  .workout-pip:hover::after { opacity: 1; background: rgba(255,255,255,0.3); }
-
-  /* Tooltip */
   .workout-pip[data-tooltip]:hover::before {
     content: attr(data-tooltip);
-    position: absolute;
-    bottom: calc(100% + 4px);
-    left: 50%;
+    position: absolute; bottom: calc(100% + 4px); left: 50%;
     transform: translateX(-50%);
-    background: var(--month-header);
-    color: white;
-    font-size: 0.65rem;
-    padding: 2px 6px;
-    border-radius: 4px;
-    white-space: nowrap;
-    z-index: 999;
-    pointer-events: none;
+    background: var(--month-header); color: white;
+    font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;
+    white-space: nowrap; z-index: 999; pointer-events: none;
     font-family: 'DM Sans', sans-serif;
   }
 
-  /* Stats bar */
+  /* ── STATS ── */
   .stats-bar {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1rem 3rem;
-    background: var(--paper);
-    border-top: 1px solid var(--border);
-    flex-wrap: wrap;
-    align-items: center;
+    display: flex; gap: 1.5rem; padding: 1rem 3rem;
+    background: var(--paper); border-top: 1px solid var(--border);
+    flex-wrap: wrap; align-items: center;
   }
-
   .stat-block { text-align: center; }
-  .stat-val {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    font-weight: 700;
-    line-height: 1;
-  }
+  .stat-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1; }
   .stat-val.chad-color { color: var(--chad); }
   .stat-val.brie-color { color: var(--brie); }
-  .stat-label {
-    font-size: 0.65rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ink-light);
-    margin-top: 2px;
-    font-weight: 500;
-  }
+  .stat-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-light); margin-top: 2px; font-weight: 500; }
   .stat-divider { width: 1px; height: 36px; background: var(--border); }
 
-  /* Modal */
+  /* ── MODAL ── */
   .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(44,36,22,0.45);
-    z-index: 500;
-    align-items: center;
-    justify-content: center;
+    display: none; position: fixed; inset: 0;
+    background: rgba(44,36,22,0.45); z-index: 500;
+    align-items: center; justify-content: center;
     backdrop-filter: blur(4px);
   }
   .modal-overlay.open { display: flex; }
-
   .modal {
-    background: var(--paper);
-    border-radius: 16px;
-    padding: 2rem;
-    min-width: 340px;
-    max-width: 480px;
-    width: 90%;
+    background: var(--paper); border-radius: 16px; padding: 2rem;
+    min-width: 340px; max-width: 480px; width: 90%;
     box-shadow: 0 20px 60px rgba(44,36,22,0.3);
     animation: slideUp 0.2s ease;
   }
-
-  @keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
-  .modal-date {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--month-header);
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid var(--border);
-  }
-
+  @keyframes slideUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
+  .modal-date { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--month-header); margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); }
   .modal-workouts { display: flex; flex-direction: column; gap: 0.75rem; }
-
-  .modal-workout-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.6rem 0.8rem;
-    border-radius: 8px;
-    background: var(--bg);
-  }
-
-  .modal-workout-name {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--ink);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.75rem;
-  }
-
+  .modal-workout-row { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.8rem; border-radius: 8px; background: var(--bg); }
+  .modal-workout-name { font-size: 0.75rem; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
   .modal-toggles { display: flex; gap: 0.5rem; }
-
   .toggle-btn {
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    border: 1.5px solid var(--border);
-    font-size: 0.72rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.15s;
-    background: white;
-    color: var(--ink-light);
+    padding: 0.3rem 0.8rem; border-radius: 20px;
+    border: 1.5px solid var(--border); font-size: 0.72rem; font-weight: 600;
+    cursor: pointer; transition: all 0.15s; background: white; color: var(--ink-light);
     font-family: 'DM Sans', sans-serif;
   }
-
   .toggle-btn.chad-active { background: var(--chad); border-color: var(--chad); color: white; }
   .toggle-btn.brie-active { background: var(--brie); border-color: var(--brie); color: white; }
-
-  .modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .btn-close {
-    padding: 0.5rem 1.2rem;
-    border-radius: 8px;
-    border: 1.5px solid var(--border);
-    background: none;
-    color: var(--ink-light);
-    font-size: 0.82rem;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.15s;
-  }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .btn-close { padding: 0.5rem 1.2rem; border-radius: 8px; border: 1.5px solid var(--border); background: none; color: var(--ink-light); font-size: 0.82rem; font-weight: 500; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
   .btn-close:hover { border-color: var(--ink-light); color: var(--ink); }
-
-  .btn-save {
-    padding: 0.5rem 1.4rem;
-    border-radius: 8px;
-    border: none;
-    background: var(--month-header);
-    color: white;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.15s;
-  }
+  .btn-save { padding: 0.5rem 1.4rem; border-radius: 8px; border: none; background: var(--month-header); color: white; font-size: 0.82rem; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; }
   .btn-save:hover { background: var(--chad); }
 
   @media (max-width: 768px) {
@@ -415,48 +256,68 @@
     main { padding: 1rem; }
     .day-cell { min-height: 80px; padding: 0.3rem; }
     .workout-label { display: none; }
-    .workout-pip { width: 10px; height: 10px; }
+    .workout-pip { width: 10px; height: 10px; font-size: 0.42rem; }
+    .stats-bar { padding: 1rem; gap: 1rem; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="title-block">
-    <h1>Exercise Log</h1>
-    <p>Chad &amp; Brie · 2026</p>
+<!-- PASSWORD GATE -->
+<div id="gate">
+  <div class="gate-box">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--month-header);text-align:center;">Exercise Log</h2>
+    <p style="text-align:center;font-size:0.8rem;color:var(--ink-light);">Chad &amp; Brie · Enter password to continue</p>
+    <input class="gate-input" type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+    <button class="gate-btn" onclick="checkPw()">Enter</button>
+    <div class="gate-error" id="gateError"></div>
   </div>
-  <div style="display:flex; gap:2rem; flex-wrap:wrap; align-items:center;">
-    <div class="legend">
-      <div class="legend-item"><div class="legend-dot dot-chad"></div>Chad</div>
-      <div class="legend-item"><div class="legend-dot dot-brie"></div>Brie</div>
-    </div>
-    <div class="nav">
-      <button class="nav-btn" onclick="prevMonth()">←</button>
-      <div class="month-label" id="monthLabel"></div>
-      <button class="nav-btn" onclick="nextMonth()">→</button>
-    </div>
-  </div>
-</header>
+</div>
 
-<main>
-  <div class="calendar-grid">
-    <div class="dow-row">
-      <div class="dow-cell">Sun</div>
-      <div class="dow-cell">Mon</div>
-      <div class="dow-cell">Tue</div>
-      <div class="dow-cell">Wed</div>
-      <div class="dow-cell">Thu</div>
-      <div class="dow-cell">Fri</div>
-      <div class="dow-cell weekend">Sat</div>
+<!-- APP (hidden until authenticated) -->
+<div id="app" style="display:none;">
+  <header>
+    <div class="title-block">
+      <h1>Exercise Log</h1>
+      <p>Chad &amp; Brie · 2026</p>
     </div>
-    <div id="calBody"></div>
-  </div>
-</main>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:center;">
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot dot-chad"></div>Chad</div>
+        <div class="legend-item"><div class="legend-dot dot-brie"></div>Brie</div>
+        <div class="legend-item"><div class="legend-dot dot-both"></div>Both</div>
+      </div>
+      <div class="sync-label">
+        <span class="sync-dot" id="syncDot"></span>
+        <span id="syncText">connecting…</span>
+      </div>
+      <div class="nav">
+        <button class="nav-btn" onclick="prevMonth()">←</button>
+        <div class="month-label" id="monthLabel"></div>
+        <button class="nav-btn" onclick="nextMonth()">→</button>
+      </div>
+    </div>
+  </header>
 
-<div class="stats-bar" id="statsBar"></div>
+  <main>
+    <div class="calendar-grid">
+      <div class="dow-row">
+        <div class="dow-cell">Sun</div>
+        <div class="dow-cell">Mon</div>
+        <div class="dow-cell">Tue</div>
+        <div class="dow-cell">Wed</div>
+        <div class="dow-cell">Thu</div>
+        <div class="dow-cell">Fri</div>
+        <div class="dow-cell weekend">Sat</div>
+      </div>
+      <div id="calBody"></div>
+    </div>
+  </main>
 
-<!-- Modal -->
+  <div class="stats-bar" id="statsBar"></div>
+</div>
+
+<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <div class="modal-date" id="modalDate"></div>
@@ -468,103 +329,163 @@
   </div>
 </div>
 
-<script>
-const WORKOUTS = ['GYM','MEDITATE','JOG','STRETCH','BIKE','UPPER BODY','LOWER BODY'];
-const SHORT = {'GYM':'GYM','MEDITATE':'MED','JOG':'JOG','STRETCH':'STR','BIKE':'BIK','UPPER BODY':'UPR','LOWER BODY':'LWR'};
-const FIRST = {'GYM':'G','MEDITATE':'M','JOG':'J','STRETCH':'S','BIKE':'B','UPPER BODY':'U','LOWER BODY':'L'};
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, getDoc }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// Data store: key = "YYYY-MM-DD", value = {workout: {chad:bool, brie:bool}}
-let data = {};
-try { data = JSON.parse(localStorage.getItem('exerciseLog') || '{}'); } catch(e){}
+const firebaseConfig = {
+  apiKey: "AIzaSyAv89ee9PBlFvhqJbZ31SfZeIIBdKXOUyk",
+  authDomain: "b-c-exercise-log.firebaseapp.com",
+  projectId: "b-c-exercise-log",
+  storageBucket: "b-c-exercise-log.firebasestorage.app",
+  messagingSenderId: "208888588686",
+  appId: "1:208888588686:web:d01cacbf448f1b093d9cdf"
+};
 
-function save() { try { localStorage.setItem('exerciseLog', JSON.stringify(data)); } catch(e){} }
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
 
-const today = new Date();
-let viewYear = today.getFullYear();
-let viewMonth = today.getMonth(); // 0-indexed
+// ── CONFIG ──────────────────────────────────────────────
+const PASSWORD    = "chadandbrie2026";
+const WORKOUTS    = ['GYM','MEDITATE','JOG','STRETCH','BIKE','UPPER BODY','LOWER BODY'];
+const SHORT       = {GYM:'GYM',MEDITATE:'MED',JOG:'JOG',STRETCH:'STR',BIKE:'BIK','UPPER BODY':'UPR','LOWER BODY':'LWR'};
+const FIRST       = {GYM:'G',MEDITATE:'M',JOG:'J',STRETCH:'S',BIKE:'B','UPPER BODY':'U','LOWER BODY':'L'};
 
+const today    = new Date();
+let viewYear   = today.getFullYear();
+let viewMonth  = today.getMonth();
+
+// Local cache of all day data: { "YYYY-MM-DD": { WORKOUT: {chad,brie} } }
+let cache = {};
+let unsubscribe = null;
+
+// ── PASSWORD ─────────────────────────────────────────────
+window.checkPw = function() {
+  const val = document.getElementById('pwInput').value.trim();
+  if (val === PASSWORD) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display  = 'block';
+    startFirestore();
+  } else {
+    document.getElementById('gateError').textContent = 'Incorrect password. Try again.';
+    document.getElementById('pwInput').value = '';
+  }
+};
+
+// ── FIRESTORE ─────────────────────────────────────────────
+function setSyncState(state) {
+  const dot  = document.getElementById('syncDot');
+  const text = document.getElementById('syncText');
+  dot.className = 'sync-dot ' + state;
+  text.textContent = state === 'syncing' ? 'saving…' : state === 'synced' ? 'synced ✓' : state === 'error' ? 'sync error' : 'connecting…';
+}
+
+function startFirestore() {
+  setSyncState('');
+  // Listen to the single shared document in real-time
+  const ref = doc(db, 'logs', 'shared');
+  unsubscribe = onSnapshot(ref, (snap) => {
+    if (snap.exists()) {
+      cache = snap.data().days || {};
+    } else {
+      cache = {};
+    }
+    setSyncState('synced');
+    renderCalendar();
+  }, (err) => {
+    console.error(err);
+    setSyncState('error');
+  });
+}
+
+async function saveToFirestore() {
+  setSyncState('syncing');
+  try {
+    const ref = doc(db, 'logs', 'shared');
+    await setDoc(ref, { days: cache }, { merge: true });
+    setSyncState('synced');
+  } catch(e) {
+    console.error(e);
+    setSyncState('error');
+  }
+}
+
+// ── HELPERS ───────────────────────────────────────────────
 function dateKey(y, m, d) {
   return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
 }
-
 function isToday(y, m, d) {
   return y === today.getFullYear() && m === today.getMonth() && d === today.getDate();
 }
-
 function getDayData(key) {
-  if (!data[key]) data[key] = {};
-  WORKOUTS.forEach(w => { if (!data[key][w]) data[key][w] = {chad:false,brie:false}; });
-  return data[key];
+  if (!cache[key]) cache[key] = {};
+  WORKOUTS.forEach(w => { if (!cache[key][w]) cache[key][w] = {chad:false,brie:false}; });
+  return cache[key];
 }
 
+// ── RENDER ────────────────────────────────────────────────
 function renderCalendar() {
-  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('monthLabel').textContent = `${monthNames[viewMonth]} ${viewYear}`;
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('monthLabel').textContent = `${MONTHS[viewMonth]} ${viewYear}`;
 
-  const firstDay = new Date(viewYear, viewMonth, 1).getDay();
-  const daysInMonth = new Date(viewYear, viewMonth+1, 0).getDate();
-  const daysInPrev = new Date(viewYear, viewMonth, 0).getDate();
+  const firstDay     = new Date(viewYear, viewMonth, 1).getDay();
+  const daysInMonth  = new Date(viewYear, viewMonth+1, 0).getDate();
+  const daysInPrev   = new Date(viewYear, viewMonth, 0).getDate();
 
   const body = document.getElementById('calBody');
   body.innerHTML = '';
 
   let cells = [];
-  // Prev month padding
-  for (let i = firstDay - 1; i >= 0; i--) {
-    cells.push({day: daysInPrev - i, month: viewMonth-1, year: viewYear, faded: true});
-  }
-  // This month
-  for (let d = 1; d <= daysInMonth; d++) {
+  for (let i = firstDay-1; i >= 0; i--)
+    cells.push({day: daysInPrev-i, month: viewMonth-1, year: viewYear, faded: true});
+  for (let d = 1; d <= daysInMonth; d++)
     cells.push({day: d, month: viewMonth, year: viewYear, faded: false});
-  }
-  // Next month padding
-  const remaining = 7 - (cells.length % 7);
-  if (remaining < 7) {
-    for (let d = 1; d <= remaining; d++) {
-      cells.push({day: d, month: viewMonth+1, year: viewYear, faded: true});
-    }
-  }
+  const rem = 7 - (cells.length % 7);
+  if (rem < 7) for (let d = 1; d <= rem; d++)
+    cells.push({day: d, month: viewMonth+1, year: viewYear, faded: true});
 
-  for (let w = 0; w < cells.length / 7; w++) {
+  for (let w = 0; w < cells.length/7; w++) {
     const weekEl = document.createElement('div');
     weekEl.className = 'week-row';
+
     for (let wd = 0; wd < 7; wd++) {
-      const cell = cells[w*7+wd];
-      const isWeekend = wd === 0 || wd === 6;
-      const todayClass = (!cell.faded && isToday(cell.year, cell.month, cell.day)) ? ' today' : '';
-      const weekendClass = isWeekend ? ' weekend' : '';
-      const fadedClass = cell.faded ? ' other-month' : '';
+      const cell     = cells[w*7+wd];
+      const isWknd   = wd === 0 || wd === 6;
+      const key      = dateKey(cell.year, cell.month, cell.day);
+      const dayData  = cache[key] || {};
 
-      const key = dateKey(cell.year, cell.month, cell.day);
-      const dayData = data[key] || {};
+      const cellEl   = document.createElement('div');
+      let cls = 'day-cell';
+      if (isWknd)    cls += ' weekend';
+      if (cell.faded) cls += ' other-month';
+      if (!cell.faded && isToday(cell.year, cell.month, cell.day)) cls += ' today';
 
-      const cellEl = document.createElement('div');
-      cellEl.className = `day-cell${todayClass}${weekendClass}${fadedClass}`;
-
-      // Determine day shading based on any activity
       if (!cell.faded) {
         let hasChad = false, hasBrie = false;
         WORKOUTS.forEach(w => {
           if (dayData[w]?.chad) hasChad = true;
           if (dayData[w]?.brie) hasBrie = true;
         });
-        if (hasChad && hasBrie) cellEl.classList.add('shade-both');
-        else if (hasChad) cellEl.classList.add('shade-chad');
-        else if (hasBrie) cellEl.classList.add('shade-brie');
+        if (hasChad && hasBrie) cls += ' shade-both';
+        else if (hasChad)       cls += ' shade-chad';
+        else if (hasBrie)       cls += ' shade-brie';
       }
 
+      cellEl.className = cls;
       if (!cell.faded) cellEl.onclick = () => openModal(cell.year, cell.month, cell.day);
 
       let html = `<div class="day-num">${cell.day}</div><div class="workouts-grid">`;
-      WORKOUTS.forEach(w => {
-        const wd = dayData[w] || {chad:false,brie:false};
-        const cClass = wd.chad ? ' chad-done' : '';
-        const bClass = wd.brie ? ' brie-done' : '';
-        const letter = FIRST[w];
+      WORKOUTS.forEach(workout => {
+        const wd2  = dayData[workout] || {chad:false,brie:false};
+        const cCls = wd2.chad ? ' chad-done' : '';
+        const bCls = wd2.brie ? ' brie-done' : '';
+        const ltr  = FIRST[workout];
         html += `<div class="workout-row">
-          <div class="workout-label">${SHORT[w]}</div>
-          <div class="workout-pip${cClass}" data-tooltip="Chad – ${w}">${letter}</div>
-          <div class="workout-pip${bClass}" data-tooltip="Brie – ${w}">${letter}</div>
+          <div class="workout-label">${SHORT[workout]}</div>
+          <div class="workout-pip${cCls}" data-tooltip="Chad – ${workout}">${ltr}</div>
+          <div class="workout-pip${bCls}" data-tooltip="Brie – ${workout}">${ltr}</div>
         </div>`;
       });
       html += '</div>';
@@ -573,33 +494,23 @@ function renderCalendar() {
     }
     body.appendChild(weekEl);
   }
-
   renderStats();
 }
 
 function renderStats() {
   const bar = document.getElementById('statsBar');
   let chadTotal = 0, brieTotal = 0;
-  for (let d = 1; d <= new Date(viewYear, viewMonth+1, 0).getDate(); d++) {
-    const key = dateKey(viewYear, viewMonth, d);
-    const dayData = data[key] || {};
-    WORKOUTS.forEach(w => {
-      if (dayData[w]?.chad) chadTotal++;
-      if (dayData[w]?.brie) brieTotal++;
-    });
-  }
-  // Per-workout counts
   const wCounts = {};
   WORKOUTS.forEach(w => wCounts[w] = {chad:0,brie:0});
-  for (let d = 1; d <= new Date(viewYear, viewMonth+1, 0).getDate(); d++) {
+  const days = new Date(viewYear, viewMonth+1, 0).getDate();
+  for (let d = 1; d <= days; d++) {
     const key = dateKey(viewYear, viewMonth, d);
-    const dayData = data[key] || {};
+    const dd  = cache[key] || {};
     WORKOUTS.forEach(w => {
-      if (dayData[w]?.chad) wCounts[w].chad++;
-      if (dayData[w]?.brie) wCounts[w].brie++;
+      if (dd[w]?.chad) { chadTotal++; wCounts[w].chad++; }
+      if (dd[w]?.brie) { brieTotal++; wCounts[w].brie++; }
     });
   }
-
   bar.innerHTML = `
     <div class="stat-block"><div class="stat-val chad-color">${chadTotal}</div><div class="stat-label">Chad this month</div></div>
     <div class="stat-divider"></div>
@@ -618,73 +529,69 @@ function renderStats() {
   `;
 }
 
-// Modal
-let modalKey = null;
+// ── MODAL ─────────────────────────────────────────────────
+let modalKey   = null;
 let modalState = {};
 
-function openModal(y, m, d) {
-  modalKey = dateKey(y, m, d);
+window.openModal = function(y, m, d) {
+  modalKey   = dateKey(y, m, d);
   const dayData = getDayData(modalKey);
   modalState = JSON.parse(JSON.stringify(dayData));
 
-  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const dow = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const dt = new Date(y, m, d);
-  document.getElementById('modalDate').textContent = `${dow[dt.getDay()]}, ${monthNames[m]} ${d}`;
+  const MNAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DOW    = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const dt     = new Date(y, m, d);
+  document.getElementById('modalDate').textContent = `${DOW[dt.getDay()]}, ${MNAMES[m]} ${d}`;
 
-  const container = document.getElementById('modalWorkouts');
-  container.innerHTML = WORKOUTS.map(w => `
+  document.getElementById('modalWorkouts').innerHTML = WORKOUTS.map(w => `
     <div class="modal-workout-row">
       <div class="modal-workout-name">${w}</div>
       <div class="modal-toggles">
-        <button class="toggle-btn ${modalState[w]?.chad ? 'chad-active' : ''}" 
+        <button class="toggle-btn ${modalState[w]?.chad ? 'chad-active':''}"
           onclick="toggleModal('${w}','chad',this)">Chad</button>
-        <button class="toggle-btn ${modalState[w]?.brie ? 'brie-active' : ''}" 
+        <button class="toggle-btn ${modalState[w]?.brie ? 'brie-active':''}"
           onclick="toggleModal('${w}','brie',this)">Brie</button>
       </div>
     </div>
   `).join('');
 
   document.getElementById('modalOverlay').classList.add('open');
-}
+};
 
-function toggleModal(workout, person, btn) {
+window.toggleModal = function(workout, person, btn) {
   modalState[workout][person] = !modalState[workout][person];
-  const activeClass = person === 'chad' ? 'chad-active' : 'brie-active';
-  btn.classList.toggle(activeClass, modalState[workout][person]);
-}
+  btn.classList.toggle(person === 'chad' ? 'chad-active' : 'brie-active', modalState[workout][person]);
+};
 
-function saveModal() {
-  data[modalKey] = modalState;
-  save();
+window.saveModal = async function() {
+  cache[modalKey] = modalState;
   closeModal();
   renderCalendar();
-}
+  await saveToFirestore();
+};
 
-function closeModal() {
+window.closeModal = function() {
   document.getElementById('modalOverlay').classList.remove('open');
   modalKey = null;
-}
+};
 
-function handleOverlayClick(e) {
+window.handleOverlayClick = function(e) {
   if (e.target === document.getElementById('modalOverlay')) closeModal();
-}
+};
 
-function prevMonth() {
+window.prevMonth = function() {
   viewMonth--;
   if (viewMonth < 0) { viewMonth = 11; viewYear--; }
   renderCalendar();
-}
+};
 
-function nextMonth() {
+window.nextMonth = function() {
   viewMonth++;
   if (viewMonth > 11) { viewMonth = 0; viewYear++; }
   renderCalendar();
-}
+};
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-renderCalendar();
 </script>
 </body>
 </html>
