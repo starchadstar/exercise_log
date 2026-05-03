@@ -13,10 +13,8 @@
     --ink-light: #7A6A54;
     --ink-faint: #C4B49A;
     --chad: #6B8F5E;
-    --chad-light: #A8C49A;
     --chad-bg: #EBF2E7;
     --brie: #B07D4A;
-    --brie-light: #D4A87A;
     --brie-bg: #F5EBE0;
     --gold: #C9A84C;
     --gold-bg: #F5EDD6;
@@ -35,163 +33,133 @@
     min-height: 100vh;
   }
 
-  /* ── PASSWORD GATE ── */
+  /* ── GATE ── */
   #gate {
-    position: fixed; inset: 0;
-    background: var(--bg);
+    position: fixed; inset: 0; background: var(--bg);
     display: flex; align-items: center; justify-content: center;
-    z-index: 9999;
-    flex-direction: column;
-    gap: 1.5rem;
+    z-index: 9999; flex-direction: column; gap: 1.5rem;
   }
-  #gate h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: var(--month-header);
-  }
-  #gate p { font-size: 0.85rem; color: var(--ink-light); }
   .gate-box {
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem;
-    width: 320px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2.5rem; width: 320px;
+    display: flex; flex-direction: column; gap: 1rem;
     box-shadow: 0 8px 32px var(--shadow);
   }
   .gate-input {
-    padding: 0.7rem 1rem;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    background: var(--bg);
-    color: var(--ink);
-    outline: none;
-    letter-spacing: 0.15em;
+    padding: 0.7rem 1rem; border: 1.5px solid var(--border);
+    border-radius: 8px; font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; background: var(--bg); color: var(--ink);
+    outline: none; letter-spacing: 0.15em;
   }
   .gate-input:focus { border-color: var(--chad); }
   .gate-btn {
-    padding: 0.7rem;
-    border: none;
-    border-radius: 8px;
-    background: var(--month-header);
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s;
+    padding: 0.7rem; border: none; border-radius: 8px;
+    background: var(--month-header); color: white;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    font-weight: 600; cursor: pointer; transition: background 0.15s;
   }
   .gate-btn:hover { background: var(--chad); }
-  .gate-error {
-    font-size: 0.78rem;
-    color: #c0392b;
-    text-align: center;
-    min-height: 1rem;
-  }
+  .gate-error { font-size: 0.78rem; color: #c0392b; text-align: center; min-height: 1rem; }
 
   /* ── HEADER ── */
   header {
-    padding: 2rem 3rem 1.2rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    background: var(--paper);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 1.5rem 2.5rem 1rem; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem; background: var(--paper);
+    position: sticky; top: 0; z-index: 100;
     box-shadow: 0 2px 12px var(--shadow);
   }
-  .title-block h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--month-header);
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-  .title-block p { font-size: 0.78rem; color: var(--ink-light); font-weight: 300; margin-top: 0.3rem; letter-spacing: 0.08em; text-transform: uppercase; }
-  .legend { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 500; color: var(--ink-light); }
-  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+  .title-block h1 { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--month-header); letter-spacing: -0.02em; line-height: 1; }
+  .title-block p { font-size: 0.75rem; color: var(--ink-light); font-weight: 300; margin-top: 0.25rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .header-right { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .legend { display: flex; gap: 1.2rem; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; font-weight: 500; color: var(--ink-light); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
   .dot-chad { background: var(--chad); }
   .dot-brie { background: var(--brie); }
   .dot-both { background: var(--gold); }
-  .nav { display: flex; align-items: center; gap: 1rem; }
+
+  /* View switcher */
+  .view-switcher { display: flex; gap: 0; border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .view-btn {
+    padding: 0.35rem 0.85rem; border: none; background: none;
+    font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 600;
+    color: var(--ink-light); cursor: pointer; transition: all 0.15s;
+    border-right: 1px solid var(--border);
+  }
+  .view-btn:last-child { border-right: none; }
+  .view-btn.active { background: var(--month-header); color: white; }
+  .view-btn:hover:not(.active) { background: var(--chad-bg); color: var(--chad); }
+
+  .nav { display: flex; align-items: center; gap: 0.75rem; }
   .nav-btn {
     background: none; border: 1.5px solid var(--border);
-    width: 34px; height: 34px; border-radius: 8px;
+    width: 32px; height: 32px; border-radius: 8px;
     cursor: pointer; font-size: 1rem; color: var(--ink-light);
     display: flex; align-items: center; justify-content: center;
     transition: all 0.15s;
   }
   .nav-btn:hover { border-color: var(--chad); color: var(--chad); background: var(--chad-bg); }
-  .month-label { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; color: var(--ink); min-width: 140px; text-align: center; }
-
-  /* sync indicator */
-  .sync-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: var(--ink-faint);
-    display: inline-block;
-    transition: background 0.3s;
-  }
+  .nav-label { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 500; color: var(--ink); min-width: 160px; text-align: center; }
+  .sync-label { font-size: 0.68rem; color: var(--ink-light); display: flex; align-items: center; gap: 0.4rem; }
+  .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-faint); display: inline-block; transition: background 0.3s; }
   .sync-dot.syncing { background: var(--gold); animation: pulse 1s infinite; }
   .sync-dot.synced { background: var(--chad); }
   .sync-dot.error { background: #c0392b; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-  .sync-label { font-size: 0.7rem; color: var(--ink-light); display: flex; align-items: center; gap: 0.4rem; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
 
   /* ── MAIN ── */
-  main { padding: 2rem 3rem 4rem; max-width: 1400px; margin: 0 auto; }
+  main { padding: 1.5rem 2.5rem 4rem; max-width: 1500px; margin: 0 auto; }
+
+  /* ── MONTH VIEW ── */
   .calendar-grid {
-    background: var(--paper);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    overflow: hidden;
+    background: var(--paper); border-radius: 16px;
+    border: 1px solid var(--border); overflow: hidden;
     box-shadow: 0 4px 24px var(--shadow);
   }
   .dow-row { display: grid; grid-template-columns: repeat(7,1fr); background: var(--month-header); }
-  .dow-cell { padding: 0.6rem 0; text-align: center; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
-  .dow-cell.weekend { color: rgba(255,255,255,0.4); }
+  .dow-cell { padding: 0.55rem 0; text-align: center; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
   .week-row { display: grid; grid-template-columns: repeat(7,1fr); border-bottom: 1px solid var(--border); }
   .week-row:last-child { border-bottom: none; }
+
   .day-cell {
-    min-height: 110px; padding: 0.5rem;
+    min-height: 120px; padding: 0.5rem 0.45rem;
     border-right: 1px solid var(--border);
-    position: relative; transition: background 0.15s, filter 0.15s;
+    transition: background 0.15s, filter 0.15s;
   }
   .day-cell:last-child { border-right: none; }
-  .day-cell.empty { background: rgba(0,0,0,0.015); }
-  .day-cell.other-month { opacity: 0.35; }
-  .day-cell.today .day-num {
-    background: var(--month-header); color: white;
-    border-radius: 50%; width: 24px; height: 24px;
-    display: flex; align-items: center; justify-content: center; font-weight: 600;
-  }
+  .day-cell.other-month { opacity: 0.3; pointer-events: none; }
   .day-cell.weekend { background: rgba(0,0,0,0.012); }
-  .day-cell:hover:not(.empty):not(.other-month) { cursor: pointer; filter: brightness(0.96); }
   .day-cell.shade-chad { background: var(--chad-bg); }
   .day-cell.shade-brie { background: var(--brie-bg); }
   .day-cell.shade-both { background: var(--gold-bg); }
-  .day-num { font-size: 0.75rem; font-weight: 600; color: var(--ink-light); margin-bottom: 0.4rem; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+  .day-cell:hover:not(.other-month) { cursor: pointer; filter: brightness(0.95); }
+  .day-num {
+    font-size: 0.72rem; font-weight: 600; color: var(--ink-light);
+    margin-bottom: 0.35rem; width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .day-cell.today .day-num {
+    background: var(--month-header); color: white;
+    border-radius: 50%; font-weight: 700;
+  }
   .workouts-grid { display: flex; flex-direction: column; gap: 2px; }
-  .workout-row { display: flex; gap: 2px; align-items: center; }
-  .workout-label { font-size: 0.52rem; font-weight: 600; letter-spacing: 0.04em; color: var(--ink-faint); text-transform: uppercase; width: 28px; flex-shrink: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .workout-row { display: flex; gap: 3px; align-items: center; }
+  .workout-name-label {
+    font-size: 0.5rem; font-weight: 600; letter-spacing: 0.03em;
+    color: var(--ink-faint); text-transform: uppercase;
+    width: 38px; flex-shrink: 0; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
   .workout-pip {
-    width: 14px; height: 14px; border-radius: 3px;
+    width: 15px; height: 15px; border-radius: 3px;
     border: 1.5px solid var(--border); cursor: pointer;
     transition: all 0.12s; flex-shrink: 0; position: relative;
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.52rem; font-weight: 700; color: var(--ink-faint);
+    font-size: 0.48rem; font-weight: 700; color: var(--ink-faint);
     font-family: 'DM Sans', sans-serif;
   }
-  .workout-pip:hover { border-color: var(--ink-faint); transform: scale(1.1); }
+  .workout-pip:hover { border-color: var(--ink-faint); transform: scale(1.12); }
   .workout-pip.chad-done { background: var(--chad); border-color: var(--chad); color: white; }
   .workout-pip.brie-done { background: var(--brie); border-color: var(--brie); color: white; }
   .workout-pip[data-tooltip]:hover::before {
@@ -199,23 +167,75 @@
     position: absolute; bottom: calc(100% + 4px); left: 50%;
     transform: translateX(-50%);
     background: var(--month-header); color: white;
-    font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;
+    font-size: 0.62rem; padding: 2px 6px; border-radius: 4px;
     white-space: nowrap; z-index: 999; pointer-events: none;
     font-family: 'DM Sans', sans-serif;
   }
 
+  /* ── WEEK VIEW ── */
+  #weekView { display: none; }
+  .week-view-grid {
+    background: var(--paper); border-radius: 16px;
+    border: 1px solid var(--border); overflow: hidden;
+    box-shadow: 0 4px 24px var(--shadow);
+  }
+  .week-view-header {
+    display: grid; grid-template-columns: 90px repeat(7, 1fr);
+    background: var(--month-header);
+  }
+  .week-view-header-cell {
+    padding: 0.7rem 0.5rem; text-align: center;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: rgba(255,255,255,0.8);
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .week-view-header-cell:first-child { color: rgba(255,255,255,0.4); }
+  .week-view-header-cell.today-col { color: white; background: rgba(255,255,255,0.12); }
+  .week-view-row {
+    display: grid; grid-template-columns: 90px repeat(7, 1fr);
+    border-bottom: 1px solid var(--border);
+  }
+  .week-view-row:last-child { border-bottom: none; }
+  .week-workout-label {
+    padding: 0.6rem 0.75rem; font-size: 0.72rem; font-weight: 600;
+    color: var(--ink-light); text-transform: uppercase; letter-spacing: 0.05em;
+    background: var(--bg); border-right: 1px solid var(--border);
+    display: flex; align-items: center;
+  }
+  .week-day-cell {
+    padding: 0.5rem; border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 4px;
+    align-items: center; justify-content: center;
+    min-height: 54px; transition: background 0.15s;
+    cursor: pointer;
+  }
+  .week-day-cell:last-child { border-right: none; }
+  .week-day-cell:hover { background: var(--chad-bg); }
+  .week-day-cell.today-col { background: rgba(58,46,30,0.04); }
+  .week-pip {
+    width: 28px; height: 18px; border-radius: 4px;
+    border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-weight: 700; color: var(--ink-faint);
+    cursor: pointer; transition: all 0.12s; font-family: 'DM Sans', sans-serif;
+  }
+  .week-pip:hover { transform: scale(1.08); }
+  .week-pip.chad-done { background: var(--chad); border-color: var(--chad); color: white; }
+  .week-pip.brie-done { background: var(--brie); border-color: var(--brie); color: white; }
+  .week-pip-label { font-size: 0.52rem; color: var(--ink-faint); font-weight: 500; }
+
   /* ── STATS ── */
   .stats-bar {
-    display: flex; gap: 1.5rem; padding: 1rem 3rem;
+    display: flex; gap: 1.2rem; padding: 0.9rem 2.5rem;
     background: var(--paper); border-top: 1px solid var(--border);
     flex-wrap: wrap; align-items: center;
   }
   .stat-block { text-align: center; }
-  .stat-val { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; line-height: 1; }
+  .stat-val { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; line-height: 1; }
   .stat-val.chad-color { color: var(--chad); }
   .stat-val.brie-color { color: var(--brie); }
-  .stat-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-light); margin-top: 2px; font-weight: 500; }
-  .stat-divider { width: 1px; height: 36px; background: var(--border); }
+  .stat-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-light); margin-top: 2px; font-weight: 500; }
+  .stat-divider { width: 1px; height: 32px; background: var(--border); }
 
   /* ── MODAL ── */
   .modal-overlay {
@@ -231,15 +251,15 @@
     box-shadow: 0 20px 60px rgba(44,36,22,0.3);
     animation: slideUp 0.2s ease;
   }
-  @keyframes slideUp { from{transform:translateY(20px);opacity:0} to{transform:translateY(0);opacity:1} }
+  @keyframes slideUp { from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1} }
   .modal-date { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--month-header); margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); }
-  .modal-workouts { display: flex; flex-direction: column; gap: 0.75rem; }
-  .modal-workout-row { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.8rem; border-radius: 8px; background: var(--bg); }
+  .modal-workouts { display: flex; flex-direction: column; gap: 0.6rem; }
+  .modal-workout-row { display: flex; align-items: center; justify-content: space-between; padding: 0.55rem 0.8rem; border-radius: 8px; background: var(--bg); }
   .modal-workout-name { font-size: 0.75rem; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
   .modal-toggles { display: flex; gap: 0.5rem; }
   .toggle-btn {
-    padding: 0.3rem 0.8rem; border-radius: 20px;
-    border: 1.5px solid var(--border); font-size: 0.72rem; font-weight: 600;
+    padding: 0.28rem 0.75rem; border-radius: 20px;
+    border: 1.5px solid var(--border); font-size: 0.7rem; font-weight: 600;
     cursor: pointer; transition: all 0.15s; background: white; color: var(--ink-light);
     font-family: 'DM Sans', sans-serif;
   }
@@ -252,65 +272,77 @@
   .btn-save:hover { background: var(--chad); }
 
   @media (max-width: 768px) {
-    header { padding: 1.5rem; }
-    main { padding: 1rem; }
-    .day-cell { min-height: 80px; padding: 0.3rem; }
-    .workout-label { display: none; }
-    .workout-pip { width: 10px; height: 10px; font-size: 0.42rem; }
-    .stats-bar { padding: 1rem; gap: 1rem; }
+    header { padding: 1rem 1.2rem; }
+    main { padding: 0.75rem 0.75rem 4rem; }
+    .day-cell { min-height: 85px; padding: 0.3rem; }
+    .workout-name-label { display: none; }
+    .workout-pip { width: 11px; height: 11px; font-size: 0.4rem; }
+    .stats-bar { padding: 0.75rem 1rem; gap: 0.75rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- PASSWORD GATE -->
+<!-- GATE -->
 <div id="gate">
   <div class="gate-box">
     <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--month-header);text-align:center;">Exercise Log</h2>
-    <p style="text-align:center;font-size:0.8rem;color:var(--ink-light);">Chad &amp; Brie · Enter password to continue</p>
+    <p style="text-align:center;font-size:0.8rem;color:var(--ink-light);">Chad &amp; Brie · Enter password</p>
     <input class="gate-input" type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
     <button class="gate-btn" onclick="checkPw()">Enter</button>
     <div class="gate-error" id="gateError"></div>
   </div>
 </div>
 
-<!-- APP (hidden until authenticated) -->
+<!-- APP -->
 <div id="app" style="display:none;">
   <header>
     <div class="title-block">
       <h1>Exercise Log</h1>
       <p>Chad &amp; Brie · 2026</p>
     </div>
-    <div style="display:flex;gap:2rem;flex-wrap:wrap;align-items:center;">
+    <div class="header-right">
       <div class="legend">
         <div class="legend-item"><div class="legend-dot dot-chad"></div>Chad</div>
         <div class="legend-item"><div class="legend-dot dot-brie"></div>Brie</div>
         <div class="legend-item"><div class="legend-dot dot-both"></div>Both</div>
+      </div>
+      <div class="view-switcher">
+        <button class="view-btn active" id="btnMonth" onclick="setView('month')">Month</button>
+        <button class="view-btn" id="btnWeek" onclick="setView('week')">Week</button>
       </div>
       <div class="sync-label">
         <span class="sync-dot" id="syncDot"></span>
         <span id="syncText">connecting…</span>
       </div>
       <div class="nav">
-        <button class="nav-btn" onclick="prevMonth()">←</button>
-        <div class="month-label" id="monthLabel"></div>
-        <button class="nav-btn" onclick="nextMonth()">→</button>
+        <button class="nav-btn" onclick="navPrev()">←</button>
+        <div class="nav-label" id="navLabel"></div>
+        <button class="nav-btn" onclick="navNext()">→</button>
       </div>
     </div>
   </header>
 
   <main>
-    <div class="calendar-grid">
-      <div class="dow-row">
-        <div class="dow-cell">Sun</div>
-        <div class="dow-cell">Mon</div>
-        <div class="dow-cell">Tue</div>
-        <div class="dow-cell">Wed</div>
-        <div class="dow-cell">Thu</div>
-        <div class="dow-cell">Fri</div>
-        <div class="dow-cell weekend">Sat</div>
+    <!-- MONTH VIEW -->
+    <div id="monthView">
+      <div class="calendar-grid">
+        <div class="dow-row">
+          <div class="dow-cell">Sun</div><div class="dow-cell">Mon</div>
+          <div class="dow-cell">Tue</div><div class="dow-cell">Wed</div>
+          <div class="dow-cell">Thu</div><div class="dow-cell">Fri</div>
+          <div class="dow-cell">Sat</div>
+        </div>
+        <div id="calBody"></div>
       </div>
-      <div id="calBody"></div>
+    </div>
+
+    <!-- WEEK VIEW -->
+    <div id="weekView">
+      <div class="week-view-grid">
+        <div class="week-view-header" id="weekHeader"></div>
+        <div id="weekBody"></div>
+      </div>
     </div>
   </main>
 
@@ -329,10 +361,9 @@
   </div>
 </div>
 
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, setDoc, onSnapshot, getDoc }
+import { getFirestore, doc, setDoc, onSnapshot }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -344,254 +375,269 @@ const firebaseConfig = {
   appId: "1:208888588686:web:d01cacbf448f1b093d9cdf"
 };
 
-const app = initializeApp(firebaseConfig);
-const db  = getFirestore(app);
+const fbApp = initializeApp(firebaseConfig);
+const db    = getFirestore(fbApp);
 
-// ── CONFIG ──────────────────────────────────────────────
-const PASSWORD    = "chadandbrie2026";
-const WORKOUTS    = ['GYM','MEDITATE','JOG','STRETCH','BIKE','UPPER BODY','LOWER BODY'];
-const SHORT       = {GYM:'GYM',MEDITATE:'MED',JOG:'JOG',STRETCH:'STR',BIKE:'BIK','UPPER BODY':'UPR','LOWER BODY':'LWR'};
-const FIRST       = {GYM:'G',MEDITATE:'M',JOG:'J',STRETCH:'S',BIKE:'B','UPPER BODY':'U','LOWER BODY':'L'};
+const PASSWORD = "chadandbrie2026";
+const WORKOUTS = ['GYM','MEDITATE','JOG','STRETCH','BIKE','UPPER BODY','LOWER BODY','DOG WALK'];
+const FIRST    = {GYM:'G',MEDITATE:'M',JOG:'J',STRETCH:'S',BIKE:'B','UPPER BODY':'U','LOWER BODY':'L','DOG WALK':'DW'};
 
-const today    = new Date();
-let viewYear   = today.getFullYear();
-let viewMonth  = today.getMonth();
+const today     = new Date();
+let viewYear    = today.getFullYear();
+let viewMonth   = today.getMonth();
+let weekOffset  = 0; // weeks from current week
+let currentView = 'month';
+let cache       = {};
 
-// Local cache of all day data: { "YYYY-MM-DD": { WORKOUT: {chad,brie} } }
-let cache = {};
-let unsubscribe = null;
-
-// ── PASSWORD ─────────────────────────────────────────────
-window.checkPw = function() {
+// ── GATE ─────────────────────────────────────────────────
+window.checkPw = () => {
   const val = document.getElementById('pwInput').value.trim();
   if (val === PASSWORD) {
     document.getElementById('gate').style.display = 'none';
     document.getElementById('app').style.display  = 'block';
     startFirestore();
   } else {
-    document.getElementById('gateError').textContent = 'Incorrect password. Try again.';
+    document.getElementById('gateError').textContent = 'Incorrect password.';
     document.getElementById('pwInput').value = '';
   }
 };
 
-// ── FIRESTORE ─────────────────────────────────────────────
+// ── SYNC ─────────────────────────────────────────────────
 function setSyncState(state) {
   const dot  = document.getElementById('syncDot');
   const text = document.getElementById('syncText');
   dot.className = 'sync-dot ' + state;
-  text.textContent = state === 'syncing' ? 'saving…' : state === 'synced' ? 'synced ✓' : state === 'error' ? 'sync error' : 'connecting…';
+  text.textContent = state==='syncing'?'saving…':state==='synced'?'synced ✓':state==='error'?'sync error':'connecting…';
 }
 
 function startFirestore() {
-  setSyncState('');
-  // Listen to the single shared document in real-time
   const ref = doc(db, 'logs', 'shared');
-  unsubscribe = onSnapshot(ref, (snap) => {
-    if (snap.exists()) {
-      cache = snap.data().days || {};
-    } else {
-      cache = {};
-    }
+  onSnapshot(ref, snap => {
+    cache = snap.exists() ? (snap.data().days || {}) : {};
     setSyncState('synced');
-    renderCalendar();
-  }, (err) => {
-    console.error(err);
-    setSyncState('error');
-  });
+    render();
+  }, () => setSyncState('error'));
 }
 
 async function saveToFirestore() {
   setSyncState('syncing');
   try {
-    const ref = doc(db, 'logs', 'shared');
-    await setDoc(ref, { days: cache }, { merge: true });
+    await setDoc(doc(db,'logs','shared'), {days: cache}, {merge: true});
     setSyncState('synced');
-  } catch(e) {
-    console.error(e);
-    setSyncState('error');
-  }
+  } catch(e) { setSyncState('error'); }
 }
 
 // ── HELPERS ───────────────────────────────────────────────
-function dateKey(y, m, d) {
-  return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-}
-function isToday(y, m, d) {
-  return y === today.getFullYear() && m === today.getMonth() && d === today.getDate();
-}
+function dateKey(y,m,d) { return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
+function isToday(y,m,d) { return y===today.getFullYear()&&m===today.getMonth()&&d===today.getDate(); }
 function getDayData(key) {
-  if (!cache[key]) cache[key] = {};
-  WORKOUTS.forEach(w => { if (!cache[key][w]) cache[key][w] = {chad:false,brie:false}; });
+  if (!cache[key]) cache[key]={};
+  WORKOUTS.forEach(w=>{if(!cache[key][w])cache[key][w]={chad:false,brie:false};});
   return cache[key];
 }
+function dayShade(dayData) {
+  let c=false,b=false;
+  WORKOUTS.forEach(w=>{if(dayData[w]?.chad)c=true;if(dayData[w]?.brie)b=true;});
+  return c&&b?'shade-both':c?'shade-chad':b?'shade-brie':'';
+}
 
-// ── RENDER ────────────────────────────────────────────────
-function renderCalendar() {
-  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  document.getElementById('monthLabel').textContent = `${MONTHS[viewMonth]} ${viewYear}`;
+// ── VIEW SWITCHING ────────────────────────────────────────
+window.setView = (v) => {
+  currentView = v;
+  document.getElementById('monthView').style.display = v==='month'?'block':'none';
+  document.getElementById('weekView').style.display  = v==='week'?'block':'none';
+  document.getElementById('btnMonth').classList.toggle('active', v==='month');
+  document.getElementById('btnWeek').classList.toggle('active',  v==='week');
+  if (v==='week') weekOffset=0;
+  render();
+};
 
-  const firstDay     = new Date(viewYear, viewMonth, 1).getDay();
-  const daysInMonth  = new Date(viewYear, viewMonth+1, 0).getDate();
-  const daysInPrev   = new Date(viewYear, viewMonth, 0).getDate();
+window.navPrev = () => { if(currentView==='month'){viewMonth--;if(viewMonth<0){viewMonth=11;viewYear--;}}else weekOffset--; render(); };
+window.navNext = () => { if(currentView==='month'){viewMonth++;if(viewMonth>11){viewMonth=0;viewYear++;}}else weekOffset++; render(); };
 
-  const body = document.getElementById('calBody');
-  body.innerHTML = '';
+function render() {
+  if(currentView==='month') renderMonth();
+  else renderWeek();
+  renderStats();
+}
 
-  let cells = [];
-  for (let i = firstDay-1; i >= 0; i--)
-    cells.push({day: daysInPrev-i, month: viewMonth-1, year: viewYear, faded: true});
-  for (let d = 1; d <= daysInMonth; d++)
-    cells.push({day: d, month: viewMonth, year: viewYear, faded: false});
-  const rem = 7 - (cells.length % 7);
-  if (rem < 7) for (let d = 1; d <= rem; d++)
-    cells.push({day: d, month: viewMonth+1, year: viewYear, faded: true});
+// ── MONTH VIEW ────────────────────────────────────────────
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-  for (let w = 0; w < cells.length/7; w++) {
-    const weekEl = document.createElement('div');
-    weekEl.className = 'week-row';
+function renderMonth() {
+  document.getElementById('navLabel').textContent = `${MONTHS[viewMonth]} ${viewYear}`;
+  const firstDay    = new Date(viewYear,viewMonth,1).getDay();
+  const daysInMonth = new Date(viewYear,viewMonth+1,0).getDate();
+  const daysInPrev  = new Date(viewYear,viewMonth,0).getDate();
 
-    for (let wd = 0; wd < 7; wd++) {
-      const cell     = cells[w*7+wd];
-      const isWknd   = wd === 0 || wd === 6;
-      const key      = dateKey(cell.year, cell.month, cell.day);
-      const dayData  = cache[key] || {};
+  let cells=[];
+  for(let i=firstDay-1;i>=0;i--) cells.push({day:daysInPrev-i,month:viewMonth-1,year:viewYear,faded:true});
+  for(let d=1;d<=daysInMonth;d++) cells.push({day:d,month:viewMonth,year:viewYear,faded:false});
+  const rem=7-(cells.length%7); if(rem<7) for(let d=1;d<=rem;d++) cells.push({day:d,month:viewMonth+1,year:viewYear,faded:true});
 
-      const cellEl   = document.createElement('div');
-      let cls = 'day-cell';
-      if (isWknd)    cls += ' weekend';
-      if (cell.faded) cls += ' other-month';
-      if (!cell.faded && isToday(cell.year, cell.month, cell.day)) cls += ' today';
+  const body=document.getElementById('calBody'); body.innerHTML='';
+  for(let w=0;w<cells.length/7;w++){
+    const weekEl=document.createElement('div'); weekEl.className='week-row';
+    for(let wd=0;wd<7;wd++){
+      const cell=cells[w*7+wd];
+      const key=dateKey(cell.year,cell.month,cell.day);
+      const dayData=cache[key]||{};
+      const shade=cell.faded?'':dayShade(dayData);
+      const todayCls=(!cell.faded&&isToday(cell.year,cell.month,cell.day))?'today':'';
+      const wkndCls=(wd===0||wd===6)?'weekend':'';
+      const cellEl=document.createElement('div');
+      cellEl.className=['day-cell',wkndCls,todayCls,shade,cell.faded?'other-month':''].filter(Boolean).join(' ');
+      if(!cell.faded) cellEl.onclick=()=>openModal(cell.year,cell.month,cell.day);
 
-      if (!cell.faded) {
-        let hasChad = false, hasBrie = false;
-        WORKOUTS.forEach(w => {
-          if (dayData[w]?.chad) hasChad = true;
-          if (dayData[w]?.brie) hasBrie = true;
-        });
-        if (hasChad && hasBrie) cls += ' shade-both';
-        else if (hasChad)       cls += ' shade-chad';
-        else if (hasBrie)       cls += ' shade-brie';
-      }
-
-      cellEl.className = cls;
-      if (!cell.faded) cellEl.onclick = () => openModal(cell.year, cell.month, cell.day);
-
-      let html = `<div class="day-num">${cell.day}</div><div class="workouts-grid">`;
-      WORKOUTS.forEach(workout => {
-        const wd2  = dayData[workout] || {chad:false,brie:false};
-        const cCls = wd2.chad ? ' chad-done' : '';
-        const bCls = wd2.brie ? ' brie-done' : '';
-        const ltr  = FIRST[workout];
-        html += `<div class="workout-row">
-          <div class="workout-label">${SHORT[workout]}</div>
-          <div class="workout-pip${cCls}" data-tooltip="Chad – ${workout}">${ltr}</div>
-          <div class="workout-pip${bCls}" data-tooltip="Brie – ${workout}">${ltr}</div>
+      let html=`<div class="day-num">${cell.day}</div><div class="workouts-grid">`;
+      WORKOUTS.forEach(wo=>{
+        const wd2=dayData[wo]||{chad:false,brie:false};
+        html+=`<div class="workout-row">
+          <div class="workout-name-label">${wo}</div>
+          <div class="workout-pip${wd2.chad?' chad-done':''}" data-tooltip="Chad – ${wo}">${FIRST[wo]}</div>
+          <div class="workout-pip${wd2.brie?' brie-done':''}" data-tooltip="Brie – ${wo}">${FIRST[wo]}</div>
         </div>`;
       });
-      html += '</div>';
-      cellEl.innerHTML = html;
+      html+='</div>';
+      cellEl.innerHTML=html;
       weekEl.appendChild(cellEl);
     }
     body.appendChild(weekEl);
   }
-  renderStats();
 }
 
-function renderStats() {
-  const bar = document.getElementById('statsBar');
-  let chadTotal = 0, brieTotal = 0;
-  const wCounts = {};
-  WORKOUTS.forEach(w => wCounts[w] = {chad:0,brie:0});
-  const days = new Date(viewYear, viewMonth+1, 0).getDate();
-  for (let d = 1; d <= days; d++) {
-    const key = dateKey(viewYear, viewMonth, d);
-    const dd  = cache[key] || {};
-    WORKOUTS.forEach(w => {
-      if (dd[w]?.chad) { chadTotal++; wCounts[w].chad++; }
-      if (dd[w]?.brie) { brieTotal++; wCounts[w].brie++; }
-    });
+// ── WEEK VIEW ─────────────────────────────────────────────
+function getWeekDates() {
+  const now = new Date();
+  const dayOfWeek = now.getDay(); // 0=Sun
+  const sunday = new Date(now);
+  sunday.setDate(now.getDate() - dayOfWeek + (weekOffset * 7));
+  const days=[];
+  for(let i=0;i<7;i++){
+    const d=new Date(sunday); d.setDate(sunday.getDate()+i);
+    days.push(d);
   }
-  bar.innerHTML = `
-    <div class="stat-block"><div class="stat-val chad-color">${chadTotal}</div><div class="stat-label">Chad this month</div></div>
+  return days;
+}
+
+const DOW_SHORT=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+function renderWeek() {
+  const days=getWeekDates();
+  const start=days[0], end=days[6];
+  const startStr=`${MONTHS[start.getMonth()].slice(0,3)} ${start.getDate()}`;
+  const endStr  =`${MONTHS[end.getMonth()].slice(0,3)} ${end.getDate()}`;
+  document.getElementById('navLabel').textContent=`${startStr} – ${endStr}`;
+
+  // Header
+  const hdr=document.getElementById('weekHeader'); hdr.innerHTML='';
+  const emptyHdr=document.createElement('div'); emptyHdr.className='week-view-header-cell'; emptyHdr.textContent=''; hdr.appendChild(emptyHdr);
+  days.forEach(d=>{
+    const cell=document.createElement('div');
+    const todayCls=isToday(d.getFullYear(),d.getMonth(),d.getDate())?'today-col':'';
+    cell.className=`week-view-header-cell ${todayCls}`;
+    cell.innerHTML=`<div>${DOW_SHORT[d.getDay()]}</div><div style="font-size:1rem;font-family:'Playfair Display',serif;margin-top:2px;">${d.getDate()}</div>`;
+    hdr.appendChild(cell);
+  });
+
+  // Rows per workout
+  const body=document.getElementById('weekBody'); body.innerHTML='';
+  WORKOUTS.forEach(wo=>{
+    const row=document.createElement('div'); row.className='week-view-row';
+    const label=document.createElement('div'); label.className='week-workout-label'; label.textContent=wo;
+    row.appendChild(label);
+    days.forEach(d=>{
+      const key=dateKey(d.getFullYear(),d.getMonth(),d.getDate());
+      const dayData=cache[key]||{};
+      const wd2=dayData[wo]||{chad:false,brie:false};
+      const todayCls=isToday(d.getFullYear(),d.getMonth(),d.getDate())?'today-col':'';
+      const cell=document.createElement('div');
+      cell.className=`week-day-cell ${todayCls}`;
+      cell.onclick=()=>openModal(d.getFullYear(),d.getMonth(),d.getDate());
+      cell.innerHTML=`
+        <div class="week-pip${wd2.chad?' chad-done':''}" data-tooltip="Chad">${FIRST[wo]}</div>
+        <div class="week-pip-label">Chad</div>
+        <div class="week-pip${wd2.brie?' brie-done':''}" data-tooltip="Brie" style="margin-top:3px;">${FIRST[wo]}</div>
+        <div class="week-pip-label">Brie</div>`;
+      row.appendChild(cell);
+    });
+    body.appendChild(row);
+  });
+}
+
+// ── STATS ─────────────────────────────────────────────────
+function renderStats() {
+  let dates=[];
+  if(currentView==='month'){
+    const days=new Date(viewYear,viewMonth+1,0).getDate();
+    for(let d=1;d<=days;d++) dates.push(dateKey(viewYear,viewMonth,d));
+  } else {
+    getWeekDates().forEach(d=>dates.push(dateKey(d.getFullYear(),d.getMonth(),d.getDate())));
+  }
+  let cT=0,bT=0; const wC={};
+  WORKOUTS.forEach(w=>wC[w]={chad:0,brie:0});
+  dates.forEach(key=>{
+    const dd=cache[key]||{};
+    WORKOUTS.forEach(w=>{
+      if(dd[w]?.chad){cT++;wC[w].chad++;}
+      if(dd[w]?.brie){bT++;wC[w].brie++;}
+    });
+  });
+  const period=currentView==='month'?'this month':'this week';
+  document.getElementById('statsBar').innerHTML=`
+    <div class="stat-block"><div class="stat-val chad-color">${cT}</div><div class="stat-label">Chad ${period}</div></div>
     <div class="stat-divider"></div>
-    <div class="stat-block"><div class="stat-val brie-color">${brieTotal}</div><div class="stat-label">Brie this month</div></div>
+    <div class="stat-block"><div class="stat-val brie-color">${bT}</div><div class="stat-label">Brie ${period}</div></div>
     <div class="stat-divider"></div>
-    ${WORKOUTS.map(w => `
+    ${WORKOUTS.map(w=>`
       <div class="stat-block">
-        <div style="display:flex;gap:6px;justify-content:center;align-items:baseline;">
-          <span class="stat-val chad-color" style="font-size:1rem;">${wCounts[w].chad}</span>
-          <span style="font-size:0.65rem;color:var(--ink-faint);">/</span>
-          <span class="stat-val brie-color" style="font-size:1rem;">${wCounts[w].brie}</span>
+        <div style="display:flex;gap:5px;justify-content:center;align-items:baseline;">
+          <span class="stat-val chad-color" style="font-size:0.95rem;">${wC[w].chad}</span>
+          <span style="font-size:0.6rem;color:var(--ink-faint);">/</span>
+          <span class="stat-val brie-color" style="font-size:0.95rem;">${wC[w].brie}</span>
         </div>
-        <div class="stat-label">${SHORT[w]}</div>
+        <div class="stat-label">${w}</div>
       </div>
     `).join('<div class="stat-divider"></div>')}
   `;
 }
 
 // ── MODAL ─────────────────────────────────────────────────
-let modalKey   = null;
-let modalState = {};
+let modalKey=null, modalState={};
+const DOW_FULL=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MON_SHORT=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-window.openModal = function(y, m, d) {
-  modalKey   = dateKey(y, m, d);
-  const dayData = getDayData(modalKey);
-  modalState = JSON.parse(JSON.stringify(dayData));
-
-  const MNAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const DOW    = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  const dt     = new Date(y, m, d);
-  document.getElementById('modalDate').textContent = `${DOW[dt.getDay()]}, ${MNAMES[m]} ${d}`;
-
-  document.getElementById('modalWorkouts').innerHTML = WORKOUTS.map(w => `
+window.openModal = (y,m,d) => {
+  modalKey=dateKey(y,m,d);
+  const dayData=getDayData(modalKey);
+  modalState=JSON.parse(JSON.stringify(dayData));
+  const dt=new Date(y,m,d);
+  document.getElementById('modalDate').textContent=`${DOW_FULL[dt.getDay()]}, ${MON_SHORT[m]} ${d}`;
+  document.getElementById('modalWorkouts').innerHTML=WORKOUTS.map(w=>`
     <div class="modal-workout-row">
       <div class="modal-workout-name">${w}</div>
       <div class="modal-toggles">
-        <button class="toggle-btn ${modalState[w]?.chad ? 'chad-active':''}"
-          onclick="toggleModal('${w}','chad',this)">Chad</button>
-        <button class="toggle-btn ${modalState[w]?.brie ? 'brie-active':''}"
-          onclick="toggleModal('${w}','brie',this)">Brie</button>
+        <button class="toggle-btn ${modalState[w]?.chad?'chad-active':''}" onclick="toggleModal('${w}','chad',this)">Chad</button>
+        <button class="toggle-btn ${modalState[w]?.brie?'brie-active':''}" onclick="toggleModal('${w}','brie',this)">Brie</button>
       </div>
-    </div>
-  `).join('');
-
+    </div>`).join('');
   document.getElementById('modalOverlay').classList.add('open');
 };
 
-window.toggleModal = function(workout, person, btn) {
-  modalState[workout][person] = !modalState[workout][person];
-  btn.classList.toggle(person === 'chad' ? 'chad-active' : 'brie-active', modalState[workout][person]);
+window.toggleModal=(wo,person,btn)=>{
+  modalState[wo][person]=!modalState[wo][person];
+  btn.classList.toggle(person==='chad'?'chad-active':'brie-active',modalState[wo][person]);
 };
 
-window.saveModal = async function() {
-  cache[modalKey] = modalState;
-  closeModal();
-  renderCalendar();
+window.saveModal=async()=>{
+  cache[modalKey]=modalState;
+  closeModal(); render();
   await saveToFirestore();
 };
 
-window.closeModal = function() {
-  document.getElementById('modalOverlay').classList.remove('open');
-  modalKey = null;
-};
-
-window.handleOverlayClick = function(e) {
-  if (e.target === document.getElementById('modalOverlay')) closeModal();
-};
-
-window.prevMonth = function() {
-  viewMonth--;
-  if (viewMonth < 0) { viewMonth = 11; viewYear--; }
-  renderCalendar();
-};
-
-window.nextMonth = function() {
-  viewMonth++;
-  if (viewMonth > 11) { viewMonth = 0; viewYear++; }
-  renderCalendar();
-};
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+window.closeModal=()=>{ document.getElementById('modalOverlay').classList.remove('open'); modalKey=null; };
+window.handleOverlayClick=(e)=>{ if(e.target===document.getElementById('modalOverlay'))closeModal(); };
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>
