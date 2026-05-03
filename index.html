@@ -60,6 +60,13 @@
   }
   .gate-btn:hover { background: var(--chad); }
   .gate-error { font-size: 0.78rem; color: #c0392b; text-align: center; min-height: 1rem; }
+  .remember-row {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.78rem; color: var(--ink-light); cursor: pointer;
+  }
+  .remember-row input[type="checkbox"] {
+    width: 15px; height: 15px; accent-color: var(--chad); cursor: pointer;
+  }
 
   /* ── HEADER ── */
   header {
@@ -144,13 +151,22 @@
     border-radius: 50%; font-weight: 700;
   }
   .workouts-grid { display: flex; flex-direction: column; gap: 2px; }
-  .workout-row { display: flex; gap: 3px; align-items: center; }
+  .workouts-col-header { display: flex; align-items: center; margin-bottom: 1px; }
+  .workouts-col-header-spacer { flex: 1; }
+  .workouts-col-names { display: flex; gap: 3px; }
+  .workouts-col-name {
+    width: 15px; text-align: center;
+    font-size: 0.44rem; font-weight: 700; color: var(--chad);
+    text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  .workouts-col-name.brie-name { color: var(--brie); }
+  .workout-row { display: flex; align-items: center; }
   .workout-name-label {
     font-size: 0.5rem; font-weight: 600; letter-spacing: 0.03em;
     color: var(--ink-faint); text-transform: uppercase;
-    width: 38px; flex-shrink: 0; white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis;
+    flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
+  .workout-pips { display: flex; gap: 3px; flex-shrink: 0; }
   .workout-pip {
     width: 15px; height: 15px; border-radius: 3px;
     border: 1.5px solid var(--border); cursor: pointer;
@@ -289,6 +305,10 @@
     <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--month-header);text-align:center;">Exercise Log</h2>
     <p style="text-align:center;font-size:0.8rem;color:var(--ink-light);">Chad &amp; Brie · Enter password</p>
     <input class="gate-input" type="password" id="pwInput" placeholder="Password" onkeydown="if(event.key==='Enter')checkPw()">
+    <label class="remember-row">
+      <input type="checkbox" id="rememberMe" checked>
+      Keep me logged in
+    </label>
     <button class="gate-btn" onclick="checkPw()">Enter</button>
     <div class="gate-error" id="gateError"></div>
   </div>
@@ -303,8 +323,8 @@
     </div>
     <div class="header-right">
       <div class="legend">
-        <div class="legend-item"><div class="legend-dot dot-chad"></div>Chad</div>
         <div class="legend-item"><div class="legend-dot dot-brie"></div>Brie</div>
+        <div class="legend-item"><div class="legend-dot dot-chad"></div>Chad</div>
         <div class="legend-item"><div class="legend-dot dot-both"></div>Both</div>
       </div>
       <div class="view-switcher">
@@ -390,12 +410,24 @@ let currentView = 'month';
 let cache       = {};
 
 // ── GATE ─────────────────────────────────────────────────
+function unlockApp() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display  = 'block';
+  startFirestore();
+}
+
+// Auto-login if previously remembered
+if (localStorage.getItem('exerciseLogAuth') === 'true') {
+  unlockApp();
+}
+
 window.checkPw = () => {
-  const val = document.getElementById('pwInput').value.trim();
+  const val      = document.getElementById('pwInput').value.trim();
+  const remember = document.getElementById('rememberMe').checked;
   if (val === PASSWORD) {
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('app').style.display  = 'block';
-    startFirestore();
+    if (remember) localStorage.setItem('exerciseLogAuth', 'true');
+    else          localStorage.removeItem('exerciseLogAuth');
+    unlockApp();
   } else {
     document.getElementById('gateError').textContent = 'Incorrect password.';
     document.getElementById('pwInput').value = '';
@@ -489,13 +521,22 @@ function renderMonth() {
       cellEl.className=['day-cell',wkndCls,todayCls,shade,cell.faded?'other-month':''].filter(Boolean).join(' ');
       if(!cell.faded) cellEl.onclick=()=>openModal(cell.year,cell.month,cell.day);
 
-      let html=`<div class="day-num">${cell.day}</div><div class="workouts-grid">`;
+      let html=`<div class="day-num">${cell.day}</div><div class="workouts-grid">
+        <div class="workouts-col-header">
+          <div class="workouts-col-header-spacer"></div>
+          <div class="workouts-col-names">
+            <div class="workouts-col-name brie-name">B</div>
+            <div class="workouts-col-name">C</div>
+          </div>
+        </div>`;
       WORKOUTS.forEach(wo=>{
         const wd2=dayData[wo]||{chad:false,brie:false};
         html+=`<div class="workout-row">
           <div class="workout-name-label">${wo}</div>
-          <div class="workout-pip${wd2.chad?' chad-done':''}" data-tooltip="Chad – ${wo}">${FIRST[wo]}</div>
-          <div class="workout-pip${wd2.brie?' brie-done':''}" data-tooltip="Brie – ${wo}">${FIRST[wo]}</div>
+          <div class="workout-pips">
+            <div class="workout-pip${wd2.brie?' brie-done':''}" data-tooltip="Brie – ${wo}">${FIRST[wo]}</div>
+            <div class="workout-pip${wd2.chad?' chad-done':''}" data-tooltip="Chad – ${wo}">${FIRST[wo]}</div>
+          </div>
         </div>`;
       });
       html+='</div>';
@@ -555,10 +596,10 @@ function renderWeek() {
       cell.className=`week-day-cell ${todayCls}`;
       cell.onclick=()=>openModal(d.getFullYear(),d.getMonth(),d.getDate());
       cell.innerHTML=`
-        <div class="week-pip${wd2.chad?' chad-done':''}" data-tooltip="Chad">${FIRST[wo]}</div>
-        <div class="week-pip-label">Chad</div>
-        <div class="week-pip${wd2.brie?' brie-done':''}" data-tooltip="Brie" style="margin-top:3px;">${FIRST[wo]}</div>
-        <div class="week-pip-label">Brie</div>`;
+        <div class="week-pip${wd2.brie?' brie-done':''}" data-tooltip="Brie">${FIRST[wo]}</div>
+        <div class="week-pip-label">Brie</div>
+        <div class="week-pip${wd2.chad?' chad-done':''}" data-tooltip="Chad" style="margin-top:3px;">${FIRST[wo]}</div>
+        <div class="week-pip-label">Chad</div>`;
       row.appendChild(cell);
     });
     body.appendChild(row);
@@ -585,16 +626,16 @@ function renderStats() {
   });
   const period=currentView==='month'?'this month':'this week';
   document.getElementById('statsBar').innerHTML=`
-    <div class="stat-block"><div class="stat-val chad-color">${cT}</div><div class="stat-label">Chad ${period}</div></div>
-    <div class="stat-divider"></div>
     <div class="stat-block"><div class="stat-val brie-color">${bT}</div><div class="stat-label">Brie ${period}</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-block"><div class="stat-val chad-color">${cT}</div><div class="stat-label">Chad ${period}</div></div>
     <div class="stat-divider"></div>
     ${WORKOUTS.map(w=>`
       <div class="stat-block">
         <div style="display:flex;gap:5px;justify-content:center;align-items:baseline;">
-          <span class="stat-val chad-color" style="font-size:0.95rem;">${wC[w].chad}</span>
-          <span style="font-size:0.6rem;color:var(--ink-faint);">/</span>
           <span class="stat-val brie-color" style="font-size:0.95rem;">${wC[w].brie}</span>
+          <span style="font-size:0.6rem;color:var(--ink-faint);">/</span>
+          <span class="stat-val chad-color" style="font-size:0.95rem;">${wC[w].chad}</span>
         </div>
         <div class="stat-label">${w}</div>
       </div>
@@ -617,8 +658,8 @@ window.openModal = (y,m,d) => {
     <div class="modal-workout-row">
       <div class="modal-workout-name">${w}</div>
       <div class="modal-toggles">
-        <button class="toggle-btn ${modalState[w]?.chad?'chad-active':''}" onclick="toggleModal('${w}','chad',this)">Chad</button>
         <button class="toggle-btn ${modalState[w]?.brie?'brie-active':''}" onclick="toggleModal('${w}','brie',this)">Brie</button>
+        <button class="toggle-btn ${modalState[w]?.chad?'chad-active':''}" onclick="toggleModal('${w}','chad',this)">Chad</button>
       </div>
     </div>`).join('');
   document.getElementById('modalOverlay').classList.add('open');
